@@ -14,7 +14,7 @@ const int BUTTON_PIN = 12;
 const int V1_PIN = 26;
 const int V2_PIN = 27;
 const int V3_PIN = 14;
-const int DELAY = 300;
+const int DELAY = 500;
 
 const char* hostname = "joint-control";
 const char *ssid = "iPhone (Michael)";
@@ -107,6 +107,21 @@ void onMessage(char *data, size_t len) {
       digitalWrite(V3_PIN, HIGH);
       delay(DELAY);
       digitalWrite(V2_PIN, LOW);
+      digitalWrite(V3_PIN, LOW);
+      break;
+    case 4:
+      digitalWrite(V1_PIN, HIGH);
+      delay(DELAY);
+      digitalWrite(V1_PIN, LOW);
+      break;
+   case 5:
+      digitalWrite(V2_PIN, HIGH);
+      delay(DELAY);
+      digitalWrite(V2_PIN, LOW);
+      break;
+   case 6:
+      digitalWrite(V3_PIN, HIGH);
+      delay(DELAY);
       digitalWrite(V3_PIN, LOW);
       break;
   }

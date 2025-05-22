@@ -12,6 +12,10 @@
     <button id="up" type="button" onclick="updatePosition(1)">Down</button>
     <button id="down" type="button" onclick="updatePosition(2)">Up</button>
     <button id="right" type="button" onclick="updatePosition(3)">Right</button>
+    <br>
+    <button type="button" onclick=updatePosition(4)>1</button>
+    <button type="button" onclick=updatePosition(5)>2</button>
+    <button type="button" onclick=updatePosition(6)>3</button>
     <p>Here's the text received from the esp32.</p>
   <style>
     body {
@@ -20,6 +24,10 @@
     img {
       transition: transform 0.25s linear;
       margin: 4em;
+    }
+    button {
+      width: 100px;
+      height: 60px;
     }
   </style>
   <script>
