@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body>
+    <img id="pitch_img" src="/rotator.png"/><br>
+    <img id="roll_img" src="/rotator.png"/><br>
+    <button id="left" type="button" onclick="updatePosition(0)">Left</button>
+    <button id="up" type="button" onclick="updatePosition(1)">Down</button>
+    <button id="down" type="button" onclick="updatePosition(2)">Up</button>
+    <button id="right" type="button" onclick="updatePosition(3)">Right</button>
+    <p>Here's the text received from the esp32.</p>
+  <style>
+    body {
+      margin: 4em;
+    }
+    img {
+      transition: transform 0.25s linear;
+      margin: 4em;
+    }
+  </style>
+  <script>
+    function updatePosition(dir) {
+      socket.send(JSON.stringify({"dir": dir}));
+    }
+
+    const socket = new WebSocket("ws://172.20.10.9/ws");
+    socket.addEventListener("message", (event) => {
+      $("p").text("Message from server " + event.data);
+      orientation = JSON.parse(event.data);
+      $("#pitch_img").css('transform', 'rotate(' + orientation["pitch"] + 'deg)');
+      $("#roll_img").css('transform', 'rotate(' + orientation["roll"] + 'deg)');
+
+    });
+  </script>
+</body>
+</html>
